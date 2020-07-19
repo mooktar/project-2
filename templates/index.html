@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Flack</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{url_for('static', filename='vendor/bootstrap.min.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
+    <script src="{{url_for('static', filename='index.js')}}"></script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand navbar-dark bg-primary sticky-top p-0">
+        <div class="container col-md-8 p-2">
+            <a class="navbar-brand" href="{{url_for('index')}}">Flack</a>
+            <div class="nav ml-auto">
+                <span id="menu" class="nav-link">Channels</span>
+                <a id="user" class="nav-link" href="{{url_for('logout')}}"
+                    title="Click here to logout!">{{session.username}}</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container col-md-8">
+        <div class="row">
+            {% if not session.logged_in %}
+
+            <div id="login" class="col-md-6 col-sm-10 ml-auto mr-auto">
+                <h3 class="lead">Login with your username.</h3>
+                <form id="login-form" class="form-inline pb-3" method="POST">
+                    <div class="input-group w-100">
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Username"
+                            autocomplete="off">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary form-control">&RightArrow;</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            {% else %}
+
+            <div id="channels" class="channels col-md-4 col-sm-12 p-2">
+                <form id="form-channel" class="form-inline pb">
+                    <div class="input-group w-100">
+                        <input type="text" name="channel" id="channel" class="form-control" placeholder="New channel"
+                            autocomplete="off">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary form-control">&plus;</button>
+                        </div>
+                    </div>
+                </form>
+                <hr class="hr-only">
+                <ul id="channels-list" class="list-group list-group-flush">
+                    {% for channel in channels %}
+                    <li class="list-group-item channel-item" data-channel="{{channel}}">{{channel}}</li>
+                    {% endfor %}
+                </ul>
+                <hr class="hr-only">
+                <p class="copy">
+                    &copy; <a title="Project 2 from CS50 Web Programming with Python and JavaScript.">Flack</a>
+                    by <a href="mailto:mohmouktar@gmail.com">mooktar</a>.
+                </p>
+            </div>
+
+            <div id="messages" class="col-md-8 col-sm-12 ml-auto p-2 bg-ligh">
+                <form id="form-message" class="form-inline pt-2">
+                    <div class="input-group w-100">
+                        <input type="text" name="message" id="message" class="form-control" placeholder="New message"
+                            autocomplete="off">
+                        <div class="input-group-append">
+                            <button type="submit" class="btn btn-primary form-control">&gtcc;</button>
+                        </div>
+                    </div>
+                </form>
+                <ul id="messages-list" class="list-group list-group-flush"></ul>
+            </div>
+
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <script src="{{url_for('static', filename='vendor/jquery.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/bootstrap.min.js')}}"></script>
+    <script src="{{url_for('static', filename='vendor/socket.io.min.js')}}"></script>
+</body>
+
+</html>

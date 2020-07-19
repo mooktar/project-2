@@ -1,0 +1,150 @@
+@font-face {
+  font-family: "roboto";
+  src: url(vendor/roboto/Roboto-Regular.ttf);
+}
+
+body {
+  background-color: rgb(249, 233, 250);
+  font-family: "roboto";
+}
+
+.bg-primary,
+.btn-primary,
+.active {
+  background-color: rgb(130, 0, 134) !important;
+  border: 0 !important;
+}
+
+.form-control:focus {
+  box-shadow: none !important;
+}
+
+.navbar * {
+  color: #fff !important;
+}
+
+#menu {
+  display: none;
+  cursor: pointer;
+  text-transform: capitalize;
+  /* border: 0.1em solid #bbb; */
+}
+
+#user {
+  text-transform: capitalize;
+}
+
+.list-group-item {
+  padding: 0.3em;
+  border: 0;
+  background-color: transparent;
+}
+
+/* ------------------ LOGIN ------------------ */
+
+#login {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 25%;
+}
+
+/* ------------------ CHANNELS ------------------ */
+
+#channels,
+#messages {
+  height: auto;
+}
+
+#channels {
+  background-color: #fff;
+}
+
+.list-group-item.channel-item {
+  cursor: pointer;
+  text-align: center;
+  padding: 0.2em;
+  text-transform: capitalize;
+}
+
+.list-group-item.channel-item::before,
+#menu::before {
+  content: "# ";
+}
+
+.copy {
+  text-align: center;
+  font-size: ;
+}
+
+/* ------------------ MESSAGES ------------------ */
+
+#messages {
+  height: calc(100vh - 56px);
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+#messages-list {
+  overflow-y: scroll;
+}
+
+.list-group-item.message-left,
+.list-group-item.message-right {
+  margin: 0.4em;
+  padding: 0.4em;
+  background-color: #fff;
+  max-width: 75%;
+  text-align: justify;
+  border-radius: 0.4em;
+}
+
+.list-group-item.message-user {
+  margin: 0.4em;
+  background-color: transparent;
+  text-align: center;
+}
+
+.list-group-item.message-left h5,
+.list-group-item.message-right h5,
+.list-group-item.message-user {
+  color: #777;
+  font-size: small;
+  line-height: 0.8;
+}
+
+.list-group-item.message-left {
+  margin-right: auto;
+}
+
+.list-group-item.message-right {
+  margin-left: auto;
+  background-color: rgb(188, 255, 185);
+}
+
+.delete {
+  color: red !important;
+  padding-left: 0.3em;
+  margin-left: 0.3em;
+  cursor: pointer;
+}
+
+/* ------------------ RESPONSIVE ------------------ */
+
+@media only screen and (max-width: 767px) {
+  #menu {
+    display: inline;
+  }
+
+  .channels {
+    width: 100vw;
+    z-index: 10;
+    position: absolute;
+    height: auto;
+    margin-top: -100vh;
+    transition: all 0.5s ease-in-out;
+  }
+  .channels-after {
+    margin-top: 0vh;
+  }
+}
